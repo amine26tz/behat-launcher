@@ -116,6 +116,8 @@ class Application extends BaseApplication
             'outputFile' => 'Alex\BehatLauncher\Controller\OutputFileController',
             'project'    => 'Alex\BehatLauncher\Controller\ProjectController',
             'run'        => 'Alex\BehatLauncher\Controller\RunController',
+            'angular'    => 'Alex\BehatLauncher\Controller\AngularController',
+            'api'        => 'Alex\BehatLauncher\Controller\ApiController',
         );
 
         // Controllers as service
@@ -136,6 +138,9 @@ class Application extends BaseApplication
         $this->get('/runs/{id}', 'controller.run:showAction')->bind('run_show');
         $this->get('/runs/{id}/restart', 'controller.run:restartAction')->bind('run_restart');
         $this->get('/output/{id}', 'controller.outputFile:showAction')->bind('outputFile_show');
+        $this->get('/templates/{name}.html', 'controller.angular:templateAction')->bind('angular_template');
+        $this->get('/api/projects', 'controller.api:projectListAction')->bind('api_projectList');
+        $this->get('/api/runs', 'controller.api:runListAction')->bind('api_runList');
 
         $this->extend('form.extensions', function ($extensions, $app) {
             $extensions[] = new BehatLauncherExtension();
