@@ -17,11 +17,11 @@ class OutputFileController extends Controller
         $content = $of->getContent();
 
         if (false !== strpos($content, '<html')) {
-            $template = 'OutputFile/html.html.twig';
+            $template = 'outputFile_html.html.twig';
         } else {
             $converter = new AnsiToHtmlConverter();
             $content = $converter->convert($content);
-            $template = 'OutputFile/text.html.twig';
+            $template = 'outputFile_text.html.twig';
         }
 
         return $this->render($template, array(
